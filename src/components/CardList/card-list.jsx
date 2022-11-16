@@ -1,14 +1,17 @@
 import Card from '../Card/card';
 import './index.css';
-import data from "../../assets/data.json"
 
-const CardList = () => {
-	console.log(data)
+// дестриктурируем пропс из родителя APP
+const CardList = ({goods}) => {
+	// console.log(data)
 	return (
 		<div className="cards">
 			{
 				// пройдемся по каждому элементу массива, получим данные через дестриктуризацию
-				data.map( item => <Card {...item}/>)
+				// для реакта каждому объекту дестрикт. массива нужен уникальный ключ (индекс не очень из-за сортировки)
+				// ключ нужен для понимания при рендеринге, какие объекты изменились
+
+				goods.map( (item, index) => <Card key={index} {...item} />)
 			}
 		</div>
 	);
