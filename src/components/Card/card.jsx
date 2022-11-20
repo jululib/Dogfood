@@ -3,7 +3,7 @@ import save from "./save.svg";
 
 
 
-const Card = ({name, price, discount, wight, description, picture})  => {
+const Card = ({name, price, discount, wight, description, pictures})  => {
 	const discountPrice = Math.round(price - (price/100*discount));
 	return (
 		// разметка
@@ -19,7 +19,7 @@ const Card = ({name, price, discount, wight, description, picture})  => {
 		
 			</div>
 				<a href="/product" className='card__link'>
-					<img src={picture} alt={description} className="card__image" />
+					<img src={pictures} alt={description} className="card__image" />
 					<div className="card__desc">
 						{/* с помощью с условного выражения задаем: какой класс отображать при наличии скидки */}
 						<span className={discount !==0 ? "card__old-price" : "card__price"}>{price}&nbsp;₽</span>
