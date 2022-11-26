@@ -12,14 +12,14 @@ class Api {
     getProductsList(){
         return fetch(`${this._baseURL}/products`, {
             headers: this._headers
-        }) .then(onResponce)
+        }).then(onResponce)
     };
     
     getUsersInfo(dataUser) {
         return fetch(`${this._baseURL}/users/me`, {
             headers: this._headers
             
-        }) .then(onResponce)
+        }).then(onResponce)
     };
 
     setUserInfo(dataUser) {
@@ -27,14 +27,22 @@ class Api {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify(dataUser) 
-        }) .then(onResponce)
+        }).then(onResponce)
     };
 
     search(searchQuerry) {
         // в качестве значения searchQuerry будет приниматься, то что передается в функцию search
         return fetch(`${this._baseURL}/products/search/?query=${searchQuerry}`, {
             headers: this._headers
-        }) .then(onResponce)  
+        }).then(onResponce)  
+    }
+
+    changeLikeProduct(productId, isLike) {
+        return fetch(`${this._baseURL}/products/likes/${productId}`, {
+            // если стоит лайк, то он будет удален, если нет, то удален
+            method: isLike ? "DELETE" : "PUT",
+            headers: this._headers
+        }).then(onResponce)
     }
 
 }
